@@ -1,5 +1,7 @@
-.idea
-.venv
-build
-dist
+.idea/
+.venv/
+build/
+dist/
 main.spec
+fotos/
+resultado/

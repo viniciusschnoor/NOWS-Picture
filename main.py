@@ -1,4 +1,5 @@
 from PIL import Image
+import pillow_heif
 import os
 import glob
 
@@ -15,13 +16,27 @@ fotos = sorted(glob.glob('fotos/*'), key=os.path.getmtime)
 watermark = Image.open('watermark/watermark.png')
 
 for i, foto in enumerate(fotos, start=1):
+    # Para iPhones, transformar em JPG
+    if foto.endswith(".heic"):
+        heif_file = pillow_heif.read_heif(foto)
+        image = Image.frombytes(
+            heif_file.mode,
+            heif_file.size,
+            heif_file.data,
+            "raw",
+        )
+        fotojpg = foto.replace(".heic",".jpg")
+        image.save(fotojpg)
+        os.remove(foto)
+        foto = fotojpg
+
     with Image.open(foto) as img:
         # Redimensione todas as fotos para que o maior lado tenha 1000px, diminuindo a imagem de forma que não perca a proporção original
         img.thumbnail((1000, 1000))
 
         # Redimensione a marca d'água para ter 30% do tamanho da menor dimensão da imagem
         min_dim = min(img.size)
-        watermark.thumbnail((min_dim * 0.3, min_dim * 0.3))
+        watermark.thumbnail((min_dim * 0.42, min_dim * 0.42))
 
         # Calcule a posição da marca d'água no canto inferior direito, com uma margem de 15 pixels
         watermark_position = (img.width - watermark.width - 15, img.height - watermark.height - 15)
