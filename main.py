@@ -46,4 +46,8 @@ for i, foto in enumerate(fotos, start=1):
 
         # Salve cada uma das fotos numerando-as pela ordenação realizada no passo 2
         # Agora a numeração das fotos será com três dígitos, preenchida com zeros à esquerda
-        img.save(f"resultado/{i:03}_{ano_do_evento}_{mes_do_evento}_{dia_do_evento}_{nome_do_evento}.jpg")
+        caminho = f"resultado/{ano_do_evento}_{mes_do_evento}_{dia_do_evento}_{nome_do_evento}"
+        if not os.path.exists(caminho):
+            os.makedirs(caminho)
+        img.save(f"resultado/{ano_do_evento}_{mes_do_evento}_{dia_do_evento}_{nome_do_evento}/{nome_do_evento}_{i:03}.jpg")
+        os.remove(foto)
