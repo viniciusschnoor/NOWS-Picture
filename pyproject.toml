@@ -6,7 +6,7 @@ authors = [
     {name = "Vinicius Schnoor",email = "vinicius.schnoor@outlook.com.br"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<3.15"
 dependencies = [
     "moviepy (>=2.2.1,<3.0.0)",
     "pillow (>=11.3.0,<12.0.0)",
@@ -18,3 +18,7 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pyinstaller = "^6.15.0"
+
