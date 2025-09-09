@@ -1,0 +1,20 @@
+[project]
+name = "nows-picture"
+version = "2.0.0"
+description = "reName, reOrder, apply Watermark and reSize the images"
+authors = [
+    {name = "Vinicius Schnoor",email = "vinicius.schnoor@outlook.com.br"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "moviepy (>=2.2.1,<3.0.0)",
+    "pillow (>=11.3.0,<12.0.0)",
+    "pillow-heif (>=1.1.0,<2.0.0)",
+    "numpy (>=2.3.2,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
